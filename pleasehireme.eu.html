@@ -24,40 +24,43 @@
     </script>
 </head>
 <body class="transition-colors duration-300 dark:bg-slate-950 bg-gray-50 dark:text-gray-900">
-    <nav id="navbar" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 backdrop-blur-md rounded-full px-6 py-3 shadow-lg border border-gray-200/50 dark:border-slate-700/50 transition-all duration-300">
-        <div class="flex items-center space-x-6">
-            <a href="#home" class="nav-link px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 active">Home</a>
-            <a href="#about" class="nav-link px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-blue-100 dark:hover:bg-blue-900/50">About</a>
-            <a href="#skills" class="nav-link px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-blue-100 dark:hover:bg-blue-900/50">Skills</a>
-            <a href="#portfolio" class="nav-link px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-blue-100 dark:hover:bg-blue-900/50">Portfolio</a>
-            <a href="#contact" class="nav-link px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-blue-100 dark:hover:bg-blue-900/50">Contact</a>
-            <button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-800 transition-all duration-300 border-2 border-transparent">
-                <i class="bi bi-sun-fill dark:hidden"></i>
-                <i class="bi bi-moon-fill hidden dark:block"></i>
-            </button>
+    <nav id="navbar" class="fixed top-0 w-full z-50 px-4 py-3 transition-all duration-300 sm:top-4 sm:left-1/2 sm:w-auto sm:rounded-full sm:px-6 sm:-translate-x-1/2">
+        <div class="max-w-7xl mx-auto flex items-center justify-between sm:justify-center sm:space-x-6">
+            <div class="hidden sm:flex items-center space-x-6">
+                <a href="#home" class="nav-link px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 active">Home</a>
+                <a href="#about" class="nav-link px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-blue-100 dark:hover:bg-blue-900/50">About</a>
+                <a href="#skills" class="nav-link px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-blue-100 dark:hover:bg-blue-900/50">Skills</a>
+                <a href="#portfolio" class="nav-link px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-blue-100 dark:hover:bg-blue-900/50">Portfolio</a>
+                <a href="#contact" class="nav-link px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-blue-100 dark:hover:bg-blue-900/50">Contact</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button id="mobile-menu-toggle" class="p-2 rounded-full sm:hidden dark:text-gray-200">
+                    <i class="bi bi-list text-2xl"></i>
+                </button>
+
+                <button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-800 transition-all duration-300 border-2 border-transparent">
+                    <i class="bi bi-sun-fill dark:hidden"></i>
+                    <i class="bi bi-moon-fill hidden dark:block"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <div class="mobile-nav fixed top-4 right-4 z-50 block sm:hidden">
-        <button id="mobile-menu-toggle" class="p-3 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-lg border border-gray-200/50 dark:border-slate-700/50">
-            <i class="bi bi-list text-xl dark:text-gray-200"></i>
-        </button>
-    </div>
-
-    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-white/95 dark:bg-slate-950/95 backdrop-blur-md z-40 translate-x-full transition-transform duration-300 sm:hidden">
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-white/95 dark:bg-slate-950/95 backdrop-blur-md z-40 transform -translate-x-full transition-transform duration-300 sm:hidden">
         <div class="flex flex-col items-center justify-center h-full space-y-8">
-            <a href="#home" class="mobile-nav-link text-2xl font-medium dark:text-gray-200">Home</a>
-            <a href="#about" class="mobile-nav-link text-2xl font-medium dark:text-gray-200">About</a>
-            <a href="#skills" class="mobile-nav-link text-2xl font-medium dark:text-gray-200">Skills</a>
-            <a href="#portfolio" class="mobile-nav-link text-2xl font-medium dark:text-gray-200">Portfolio</a>
-            <a href="#contact" class="mobile-nav-link text-2xl font-medium dark:text-gray-200">Contact</a>
+            <a href="#home" class="mobile-nav-link text-2xl font-medium dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+            <a href="#about" class="mobile-nav-link text-2xl font-medium dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">About</a>
+            <a href="#skills" class="mobile-nav-link text-2xl font-medium dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">Skills</a>
+            <a href="#portfolio" class="mobile-nav-link text-2xl font-medium dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">Portfolio</a>
+            <a href="#contact" class="mobile-nav-link text-2xl font-medium dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
         </div>
     </div>
 
     <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10"></div>
         <div class="text-center z-10 px-4">
-            <div class="animate-fade-in">
+            <div class="reveal-on-scroll">
                 <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                     Hello, I'm Fabian Ternis
                 </h1>
@@ -77,9 +80,9 @@
 
     <section id="about" class="py-20 px-4">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-16 dark:text-white">About Me</h2>
+            <h2 class="text-4xl font-bold text-center mb-16 dark:text-white reveal-on-scroll">About Me</h2>
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
+                <div class="space-y-6 reveal-on-scroll">
                     <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
                         I'm a passionate Laravel developer with a deep love for crafting elegant web solutions. With years of experience in full-stack development, I specialize in building scalable, maintainable applications that solve real-world problems.
                     </p>
@@ -90,7 +93,7 @@
                         My work spans from enterprise applications to creative web experiences. I believe in modern development practices, clean code architecture, and delivering exceptional user experiences. Check out my portfolios at <a href="https://fternis.de" class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium">fternis.de</a> and <a href="https://michaelninder.de" class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium">michaelninder.de</a> to see my latest work.
                     </p>
                 </div>
-                <div class="flex justify-center">
+                <div class="flex justify-center reveal-on-scroll">
                     <div class="w-80 h-80 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-full flex items-center justify-center">
                         <div class="w-64 h-64 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-xl">
                             <i class="bi bi-code-slash text-6xl text-blue-600"></i>
@@ -103,9 +106,9 @@
 
     <section id="skills" class="py-20 px-4 bg-gray-100/50 dark:bg-slate-900/50">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-16 dark:text-white">Skills & Technologies</h2>
+            <h2 class="text-4xl font-bold text-center mb-16 dark:text-white reveal-on-scroll">Skills & Technologies</h2>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="skill-category bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="skill-category bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 reveal-on-scroll">
                     <div class="text-center mb-6">
                         <i class="bi bi-server text-4xl text-blue-600 mb-4"></i>
                         <h3 class="text-2xl font-bold dark:text-white">Backend</h3>
@@ -118,8 +121,8 @@
                         <div class="skill-item dark:text-gray-300">Linux</div>
                     </div>
                 </div>
-                
-                <div class="skill-category bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+
+                <div class="skill-category bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 reveal-on-scroll">
                     <div class="text-center mb-6">
                         <i class="bi bi-palette text-4xl text-purple-600 mb-4"></i>
                         <h3 class="text-2xl font-bold dark:text-white">Frontend</h3>
@@ -132,8 +135,8 @@
                         <div class="skill-item dark:text-gray-300">Responsive Design</div>
                     </div>
                 </div>
-                
-                <div class="skill-category bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+
+                <div class="skill-category bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 reveal-on-scroll">
                     <div class="text-center mb-6">
                         <i class="bi bi-tools text-4xl text-green-600 mb-4"></i>
                         <h3 class="text-2xl font-bold dark:text-white">Tools & DevOps</h3>
@@ -151,9 +154,9 @@
 
     <section id="portfolio" class="py-20 px-4">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-16 dark:text-white">Featured Projects</h2>
+            <h2 class="text-4xl font-bold text-center mb-16 dark:text-white reveal-on-scroll">Featured Projects</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group reveal-on-scroll">
                     <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <i class="bi bi-cloud-arrow-up text-6xl text-white"></i>
                     </div>
@@ -180,7 +183,7 @@
                     </div>
                 </div>
 
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group reveal-on-scroll">
                     <div class="h-48 bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <i class="bi bi-google text-6xl text-white"></i>
                     </div>
@@ -203,7 +206,7 @@
                     </div>
                 </div>
 
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group reveal-on-scroll">
                     <div class="h-48 bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <i class="bi bi-file-earmark-code text-6xl text-white"></i>
                     </div>
@@ -229,7 +232,7 @@
                     </div>
                 </div>
 
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group reveal-on-scroll">
                     <div class="h-48 bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <i class="bi bi-person-lines-fill text-6xl text-white"></i>
                     </div>
@@ -252,7 +255,7 @@
                     </div>
                 </div>
 
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group reveal-on-scroll">
                     <div class="h-48 bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <i class="bi bi-newspaper text-6xl text-white"></i>
                     </div>
@@ -275,7 +278,7 @@
                     </div>
                 </div>
 
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group reveal-on-scroll">
                     <div class="h-48 bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <i class="bi bi-tools text-6xl text-white"></i>
                     </div>
@@ -298,7 +301,7 @@
                     </div>
                 </div>
 
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group reveal-on-scroll">
                     <div class="h-48 bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <i class="bi bi-brightness-high text-6xl text-white"></i>
                     </div>
@@ -318,7 +321,7 @@
                     </div>
                 </div>
 
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group reveal-on-scroll">
                     <div class="h-48 bg-gradient-to-br from-cyan-500 to-cyan-700 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <i class="bi bi-cloud text-6xl text-white"></i>
                     </div>
@@ -338,7 +341,7 @@
                     </div>
                 </div>
 
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group reveal-on-scroll">
                     <div class="h-48 bg-gradient-to-br from-yellow-500 to-yellow-700 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <i class="bi bi-code-square text-6xl text-white"></i>
                     </div>
@@ -358,7 +361,7 @@
                     </div>
                 </div>
 
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group reveal-on-scroll">
                     <div class="h-48 bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <i class="bi bi-person-bounding-box text-6xl text-white"></i>
                     </div>
@@ -381,7 +384,7 @@
                     </div>
                 </div>
 
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group reveal-on-scroll">
                     <div class="h-48 bg-gradient-to-br from-pink-500 to-pink-700 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <i class="bi bi-journal-code text-6xl text-white"></i>
                     </div>
@@ -401,9 +404,9 @@
                     </div>
                 </div>
 
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group reveal-on-scroll">
                     <div class="h-48 bg-gradient-to-br from-gray-500 to-gray-700 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                        <i class="bi bi-tools text-6xl text-white"></i>
+                        <i class="bi bi-tools text-6xl text-white opacity-70"></i>
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-3 dark:text-white">mtex.dev - Developer Platform</h3>
@@ -424,7 +427,7 @@
                     </div>
                 </div>
 
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group reveal-on-scroll">
                     <div class="h-48 bg-gradient-to-br from-amber-500 to-orange-700 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <i class="bi bi-journals text-6xl text-white"></i>
                     </div>
@@ -446,7 +449,7 @@
                     </div>
                 </div>
 
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group reveal-on-scroll">
                     <div class="h-48 bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                         <i class="bi bi-code-slash text-6xl text-white opacity-70"></i>
                     </div>
@@ -472,9 +475,9 @@
 
     <section id="contact" class="py-20 px-4 bg-gray-100/50 dark:bg-slate-900/50">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-16 dark:text-white">Let's Connect</h2>
+            <h2 class="text-4xl font-bold text-center mb-16 dark:text-white reveal-on-scroll">Let's Connect</h2>
             <div class="grid md:grid-cols-2 gap-12">
-                <div>
+                <div class="reveal-on-scroll">
                     <h3 class="text-2xl font-bold mb-6 dark:text-white">Get In Touch</h3>
                     <div class="space-y-4">
                         <a href="mailto:f.ternis@xpsystems.eu" class="flex items-center p-4 bg-white dark:bg-slate-800 rounded-xl hover:shadow-lg transition-all duration-300">
@@ -499,8 +502,8 @@
                         </a>
                     </div>
                 </div>
-                
-                <div>
+
+                <div class="reveal-on-scroll">
                     <h3 class="text-2xl font-bold mb-6 dark:text-white">Send a Message</h3>
                     <form class="space-y-4">
                         <div class="text-center text-gray-600 dark:text-gray-400 p-4 border border-blue-300 dark:border-blue-700 rounded-xl bg-blue-50 dark:bg-blue-900/20">
@@ -536,7 +539,7 @@
                 <p class="mb-4">Welcome to my personal portfolio website. Your privacy is a priority for me.</p>
                 <h4 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">1. Data Collection</h4>
                 <p class="mb-4">This website is designed to be as privacy-friendly as possible. I do not actively collect any personal data from visitors. There are no tracking cookies, analytics that store personal information, or third-party advertising scripts.</p>
-                
+
                 <h4 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">2. Theme Preference</h4>
                 <p class="mb-4">The only information stored locally in your browser is your theme preference (dark or light mode). This is saved in your browser's local storage and is solely used to remember your choice for a consistent user experience. This preference is not transmitted to my server or any third party.</p>
 
@@ -545,7 +548,7 @@
 
                 <h4 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">4. Changes to this Policy</h4>
                 <p class="mb-4">I may update this privacy policy from time to time. Any changes will be posted on this page. You are advised to review this Privacy Policy periodically for any changes.</p>
-                
+
                 <h4 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">5. Contact</h4>
                 <p>If you have any questions about this privacy policy, please contact me at f.ternis@xpsystems.eu.</p>
             </div>
@@ -562,7 +565,7 @@
                 <p class="mb-2">Alzeyer Str. 97</p>
                 <p class="mb-4">67592 Floersheim-Dalsheim</p>
                 <p class="mb-2">Germany</p>
-                
+
                 <h4 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Contact:</h4>
                 <p class="mb-2">Email: f.ternis@xpsystems.eu</p>
                 <p class="mb-4">Phone: Available upon request</p>
@@ -580,7 +583,7 @@
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const navbar = document.getElementById('navbar');
-        
+
         function setTheme(theme) {
             if (theme === 'dark') {
                 html.classList.add('dark');
@@ -591,29 +594,31 @@
             }
             localStorage.setItem('theme', theme);
         }
-        
+
         function getTheme() {
             return localStorage.getItem('theme') || 'dark';
         }
-        
+
         setTheme(getTheme());
-        
+
         themeToggle.addEventListener('click', () => {
             const currentTheme = getTheme();
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             setTheme(newTheme);
         });
-        
+
         mobileMenuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('translate-x-full');
+            mobileMenu.classList.toggle('-translate-x-full');
+            document.body.classList.toggle('overflow-hidden');
         });
-        
+
         document.querySelectorAll('.mobile-nav-link').forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.add('translate-x-full');
+                mobileMenu.classList.add('-translate-x-full');
+                document.body.classList.remove('overflow-hidden');
             });
         });
-        
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -626,20 +631,21 @@
                 }
             });
         });
-        
+
         function updateActiveNavLink() {
             const sections = document.querySelectorAll('section[id]');
             const navLinks = document.querySelectorAll('.nav-link');
-            
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
             let currentSection = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
+                const sectionTop = section.offsetTop - 150;
                 const sectionHeight = section.offsetHeight;
                 if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
                     currentSection = section.getAttribute('id');
                 }
             });
-            
+
             navLinks.forEach(link => {
                 link.classList.remove('active', 'bg-blue-600', 'text-white');
                 link.classList.add('text-gray-700', 'dark:text-gray-300');
@@ -648,39 +654,49 @@
                     link.classList.remove('text-gray-700', 'dark:text-gray-300');
                 }
             });
+
+            mobileNavLinks.forEach(link => {
+                link.classList.remove('text-blue-600', 'dark:text-blue-400');
+                link.classList.add('dark:text-gray-200');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('text-blue-600', 'dark:text-blue-400');
+                }
+            });
         }
 
-        function handleNavbarVisibility() {
+        function handleNavbarTransparency() {
             if (window.scrollY === 0) {
                 navbar.classList.add('bg-transparent', 'shadow-none', 'border-transparent');
-                navbar.classList.remove('bg-white/80', 'dark:bg-slate-900/80', 'shadow-lg', 'border-gray-200/50', 'dark:border-slate-700/50');
+                navbar.classList.remove('backdrop-blur-md', 'bg-white/80', 'dark:bg-slate-900/80', 'shadow-lg', 'border-gray-200/50', 'dark:border-slate-700/50');
             } else {
                 navbar.classList.remove('bg-transparent', 'shadow-none', 'border-transparent');
-                navbar.classList.add('bg-white/80', 'dark:bg-slate-900/80', 'shadow-lg', 'border-gray-200/50', 'dark:border-slate-700/50');
+                navbar.classList.add('backdrop-blur-md', 'bg-white/80', 'dark:bg-slate-900/80', 'shadow-lg', 'border-gray-200/50', 'dark:border-slate-700/50');
             }
         }
-        
+
         window.addEventListener('scroll', () => {
             updateActiveNavLink();
-            handleNavbarVisibility();
+            handleNavbarTransparency();
         });
         window.addEventListener('load', () => {
             updateActiveNavLink();
-            handleNavbarVisibility();
+            handleNavbarTransparency();
         });
-        
-        const observer = new IntersectionObserver((entries) => {
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in');
+                    entry.target.classList.add('animated');
+                    observer.unobserve(entry.target);
                 }
             });
         }, {
+            rootMargin: '0px 0px -10% 0px',
             threshold: 0.1
         });
-        
-        document.querySelectorAll('.skill-category, .project-card').forEach((el) => {
-            observer.observe(el);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+            revealObserver.observe(el);
         });
 
         const openPrivacyBtn = document.getElementById('open-privacy');
@@ -734,27 +750,24 @@
             }
         });
     </script>
-    
+
     <style>
-        .animate-fade-in {
-            animation: fadeIn 1s ease-in-out;
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, transform;
         }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        .reveal-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
-        
+
         .skill-item {
             @apply px-4 py-2 bg-gray-100 dark:bg-slate-700 rounded-lg text-sm font-medium;
         }
-        
+
         .nav-link {
             color: var(--tw-text-opacity);
         }
@@ -777,17 +790,19 @@
             transform: translateY(0);
             transition: all 0.3s ease;
         }
-        
+
         .project-card:hover {
             transform: translateY(-8px);
         }
-        
-        @media (max-width: 640px) {
-            .nav-link {
-                display: none;
+
+        @media (max-width: 639px) {
+            #navbar {
+                border-radius: 0;
+                top: 0;
+                transform: none;
             }
         }
-        
+
         html {
             scroll-behavior: smooth;
         }
