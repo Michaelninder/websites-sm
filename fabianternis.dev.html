@@ -75,7 +75,6 @@
         color: var(--color-bg);
       }
 
-      /* Header */
       .header-container {
         position: sticky;
         top: 0;
@@ -144,7 +143,6 @@
         display: block;
       }
 
-      /* Main Content */
       .main-content-container {
         max-width: var(--max-width);
         margin: 0 auto;
@@ -155,7 +153,6 @@
         padding: clamp(3rem, 8vw, 5rem) 0;
       }
 
-      /* Hero */
       .hero-section {
         padding: clamp(5rem, 12vw, 8rem) 0 clamp(4rem, 10vw, 6rem);
       }
@@ -218,7 +215,6 @@
         border-color: var(--color-text);
       }
 
-      /* Section Title */
       .section-title {
         font-size: 1.5rem;
         font-weight: 600;
@@ -226,7 +222,6 @@
         letter-spacing: -0.02em;
       }
 
-      /* About */
       .about-content p {
         font-size: 1.0625rem;
         margin-bottom: 1.25rem;
@@ -234,7 +229,6 @@
         line-height: 1.7;
       }
 
-      /* Portfolio */
       .portfolio-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -250,6 +244,10 @@
 
       .portfolio-item:hover {
         border-color: var(--color-text);
+      }
+
+      .portfolio-item:last-child:nth-child(odd) {
+        grid-column: span 2;
       }
 
       .portfolio-item h3 {
@@ -278,7 +276,6 @@
         color: var(--color-accent);
       }
 
-      /* Contact */
       .contact-text {
         font-size: 1.0625rem;
         margin-bottom: 1.5rem;
@@ -300,7 +297,6 @@
         opacity: 0.6;
       }
 
-      /* Footer */
       .footer-container {
         text-align: center;
         padding: 2.5rem var(--spacing);
@@ -310,7 +306,6 @@
         color: var(--color-text-secondary);
       }
 
-      /* Scroll to top */
       .scroll-to-top {
         position: fixed;
         bottom: 2rem;
@@ -378,6 +373,10 @@
       @media (max-width: 640px) {
         .portfolio-grid {
           grid-template-columns: 1fr;
+        }
+
+        .portfolio-item:last-child:nth-child(odd) {
+          grid-column: span 1;
         }
 
         .scroll-to-top {
