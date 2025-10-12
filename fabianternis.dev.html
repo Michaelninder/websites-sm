@@ -4,8 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fabian Ternis - Laravel Developer</title>
-    <meta name="description" content="Laravel Developer specializing in elegant web solutions" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <meta
+      name="description"
+      content="Fabian Ternis is a Laravel Developer from Germany specializing in elegant web solutions."
+    />
+    <meta
+      name="keywords"
+      content="Fabian Ternis, Laravel developer, PHP developer, Web Dev, Webentwickler, Germany, Web Development, Backend Development, Frontend Development, Fullstack, michaelninder"
+    />
+    <meta name="author" content="Fabian Ternis" />
+    <meta property="og:title" content="Fabian Ternis - Laravel Developer" />
+    <meta
+      property="og:description"
+      content="Fabian Ternis is a Laravel Developer from Germany specializing in elegant web solutions."
+    />
+    <meta property="og:url" content="https://www.fabianternis.dev" />
+    <meta property="og:type" content="website" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
     <style>
       :root {
         --color-dark: #0f0f0f;
@@ -15,7 +34,8 @@
         --color-text-secondary: #6b7280;
         --color-border: #e5e7eb;
         --color-accent: #3b82f6;
-        --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, "Helvetica Neue", Arial, sans-serif;
         --max-width: 680px;
         --spacing: 1.25rem;
         --radius: 6px;
@@ -110,11 +130,19 @@
         transition: opacity 0.2s ease;
       }
 
-      .moon-icon { display: block; }
-      .sun-icon { display: none; }
+      .moon-icon {
+        display: block;
+      }
+      .sun-icon {
+        display: none;
+      }
 
-      :root.dark .moon-icon { display: none; }
-      :root.dark .sun-icon { display: block; }
+      :root.dark .moon-icon {
+        display: none;
+      }
+      :root.dark .sun-icon {
+        display: block;
+      }
 
       /* Main Content */
       .main-content-container {
@@ -343,9 +371,16 @@
           <span class="status-text">Open to opportunities</span>
         </div>
         <h1 class="hero-title">Hi, I'm Fabian</h1>
-        <p class="hero-subtitle">Laravel developer crafting elegant web solutions</p>
+        <p class="hero-subtitle">
+          Laravel developer from Germany crafting elegant web solutions
+        </p>
         <div class="social-links">
-          <a href="https://github.com/michaelninder" target="_blank" rel="noopener" aria-label="GitHub">
+          <a
+            href="https://github.com/michaelninder"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+          >
             <i class="bi bi-github"></i>
           </a>
           <a href="mailto:f.ternis@xpsystems.eu" aria-label="Email">
@@ -358,14 +393,15 @@
         <h2 class="section-title">About</h2>
         <div class="about-content">
           <p>
-            I specialize in building robust and scalable web applications using Laravel. 
-            My approach focuses on writing clean, maintainable code while delivering 
-            exceptional user experiences.
+            I specialize in building robust and scalable web applications using
+            Laravel. My approach focuses on writing clean, maintainable code
+            while delivering exceptional user experiences.
           </p>
           <p>
-            With a passion for both backend architecture and frontend polish, I create 
-            solutions that are as functional as they are elegant. I'm also an advocate 
-            for open-source software and continuously exploring emerging technologies.
+            As a developer from Germany, I'm passionate about both backend
+            architecture and frontend polish, creating solutions that are as
+            functional as they are elegant. I'm also an advocate for open-source
+            software and continuously exploring emerging technologies.
           </p>
         </div>
       </section>
@@ -407,7 +443,8 @@
       <section class="contact-section" id="contact">
         <h2 class="section-title">Contact</h2>
         <p class="contact-text">
-          I'm available for collaborations and new opportunities. Let's build something great together.
+          I'm available for collaborations and new opportunities. Let's build
+          something great together.
         </p>
         <a href="mailto:f.ternis@xpsystems.eu" class="contact-email">
           f.ternis@xpsystems.eu
@@ -434,7 +471,8 @@
       };
 
       const savedTheme = localStorage.getItem(themeKey);
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches;
       applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
 
       themeToggle.addEventListener("click", () => {
