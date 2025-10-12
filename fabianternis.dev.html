@@ -369,6 +369,15 @@
       .list-item a:hover {
         color: var(--color-accent);
       }
+      
+      .highlight {
+        color: var(--color-accent);
+        font-weight: 500;
+      }
+
+      .status-text {
+        transition: opacity 0.3s ease;
+      }
 
       @media (max-width: 640px) {
         .portfolio-grid {
@@ -405,7 +414,7 @@
         </div>
         <h1 class="hero-title">Hi, I'm Fabian</h1>
         <p class="hero-subtitle">
-          Laravel developer from Germany crafting elegant web solutions
+          Laravel developer from <span class="highlight">Germany</span> crafting elegant web solutions
         </p>
         <div class="social-links">
           <a
@@ -573,7 +582,6 @@
             <a href="https://yourlink.app" target="_blank" rel="noopener">
               Visit site <i class="bi bi-arrow-up-right"></i>
             </a>
-            <!-- Consider adding a mention of technologies like Laravel for backend if applicable -->
           </article>
 
           <article class="portfolio-item">
@@ -582,8 +590,6 @@
               A unified platform for social profile management, short links, and
               curated social media lists. Aims to simplify online presence management.
             </p>
-            <!-- Add a link if a primary URL is available -->
-            <!-- <a href="[URL]" target="_blank" rel="noopener">View Project <i class="bi bi-arrow-up-right"></i></a> -->
           </article>
 
           <article class="portfolio-item">
@@ -593,8 +599,6 @@
               designed to offer an accessible and robust API for managing and
               serving blog content.
             </p>
-            <!-- Add a link if a primary URL is available -->
-            <!-- <a href="[URL]" target="_blank" rel="noopener">View Project <i class="bi bi-arrow-up-right"></i></a> -->
           </article>
 
           <article class="portfolio-item">
@@ -657,6 +661,42 @@
       scrollToTopBtn.addEventListener("click", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
+
+      const statusTexts = [
+        "Open to opportunities",
+        "Available for hire",
+        "Open to collaborations",
+        "Accepting freelance work",
+        "Seeking new projects",
+        "Open to full-time roles",
+        "Consulting available",
+        "Happy to discuss ideas"
+      ];
+
+      let shuffled = [...statusTexts].sort(() => Math.random() - 0.5);
+      let currentIndex = 0;
+
+      const statusElement = document.querySelector(".status-text");
+
+      function updateStatus() {
+        if (currentIndex >= shuffled.length) {
+          shuffled = [...statusTexts].sort(() => Math.random() - 0.5);
+          currentIndex = 0;
+        }
+
+        statusElement.style.opacity = "0";
+
+        setTimeout(() => {
+          statusElement.textContent = shuffled[currentIndex];
+          statusElement.style.opacity = "1";
+          currentIndex++;
+        }, 300);
+
+        const nextDelay = Math.random() * 3000 + 2000;
+        setTimeout(updateStatus, nextDelay);
+      }
+
+      setTimeout(updateStatus, 3000);
     </script>
   </body>
 </html>
