@@ -27,3 +27,57 @@ window.addEventListener("scroll", () => {
 scrollToTopBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+if (window.innerWidth > 768) {
+  const cursor = document.createElement('div');
+  cursor.className = 'cursor';
+  cursor.innerHTML = `
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+  `;
+  document.body.appendChild(cursor);
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  const animateCursor = () => {
+    const delay = 0.1;
+    cursorX += (mouseX - cursorX) * delay;
+    cursorY += (mouseY - cursorY) * delay;
+
+    cursor.style.left = cursorX - 10 + 'px';
+    cursor.style.top = cursorY - 10 + 'px';
+
+    requestAnimationFrame(animateCursor);
+  };
+
+  animateCursor();
+
+  const interactiveElements = document.querySelectorAll(
+    'a, button, .portfolio-item, .status-badge'
+  );
+
+  interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.classList.add('active');
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.classList.remove('active');
+    });
+  });
+
+  document.addEventListener('mouseleave', () => {
+    cursor.classList.add('hidden');
+  });
+
+  document.addEventListener('mouseenter', () => {
+    cursor.classList.remove('hidden');
+  });
+}
