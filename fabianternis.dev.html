@@ -34,8 +34,8 @@
         --color-text-secondary: #6b7280;
         --color-border: #e5e7eb;
         --color-accent: #3b82f6;
-        --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, "Helvetica Neue", Arial, sans-serif;
+        --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
         --max-width: 680px;
         --spacing: 1.25rem;
         --radius: 6px;
@@ -95,6 +95,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 2rem;
       }
 
       .site-title {
@@ -105,7 +106,35 @@
         letter-spacing: -0.01em;
       }
 
-      .theme-toggle {
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links a {
+        color: var(--color-text-secondary);
+        text-decoration: none;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--color-text);
+      }
+
+      .nav-controls {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .theme-toggle,
+      .menu-toggle {
         background: none;
         border: none;
         font-size: 1.125rem;
@@ -121,7 +150,8 @@
         transition: var(--transition);
       }
 
-      .theme-toggle:hover {
+      .theme-toggle:hover,
+      .menu-toggle:hover {
         background-color: var(--color-border);
       }
 
@@ -141,6 +171,86 @@
       }
       :root.dark .sun-icon {
         display: block;
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+
+      .mobile-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--color-bg);
+        border-left: 1px solid var(--color-border);
+        transition: right 0.3s ease;
+        z-index: 200;
+        padding: 2rem;
+      }
+
+      .mobile-nav.open {
+        right: 0;
+      }
+
+      .mobile-nav-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3rem;
+      }
+
+      .mobile-nav-title {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .close-nav {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--color-text);
+        cursor: pointer;
+        padding: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mobile-nav-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .mobile-nav-links a {
+        color: var(--color-text);
+        text-decoration: none;
+        font-size: 1.125rem;
+        font-weight: 500;
+        display: block;
+        transition: var(--transition);
+      }
+
+      .mobile-nav-links a:hover {
+        color: var(--color-accent);
+      }
+
+      .nav-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 150;
+      }
+
+      .nav-overlay.open {
+        opacity: 1;
+        visibility: visible;
       }
 
       .main-content-container {
@@ -369,7 +479,7 @@
       .list-item a:hover {
         color: var(--color-accent);
       }
-      
+
       .highlight {
         color: var(--color-accent);
         font-weight: 500;
@@ -379,7 +489,15 @@
         transition: opacity 0.3s ease;
       }
 
-      @media (max-width: 640px) {
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .menu-toggle {
+          display: flex;
+        }
+
         .portfolio-grid {
           grid-template-columns: 1fr;
         }
@@ -396,15 +514,59 @@
     </style>
   </head>
   <body>
+    <div class="nav-overlay" id="nav-overlay"></div>
+
     <header class="header-container">
       <nav class="navbar">
         <a href="#" class="site-title">Fabian Ternis</a>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-          <i class="bi bi-moon-stars moon-icon"></i>
-          <i class="bi bi-brightness-high sun-icon"></i>
-        </button>
+
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#current-work">Current</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-controls">
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="Toggle theme"
+          >
+            <i class="bi bi-moon-stars moon-icon"></i>
+            <i class="bi bi-brightness-high sun-icon"></i>
+          </button>
+          <button
+            id="menu-toggle"
+            class="menu-toggle"
+            aria-label="Toggle menu"
+          >
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
       </nav>
     </header>
+
+    <aside class="mobile-nav" id="mobile-nav">
+      <div class="mobile-nav-header">
+        <span class="mobile-nav-title">Menu</span>
+        <button
+          id="close-nav"
+          class="close-nav"
+          aria-label="Close navigation"
+        >
+          <i class="bi bi-x"></i>
+        </button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="#about" class="mobile-nav-link">About</a></li>
+        <li><a href="#work" class="mobile-nav-link">Work</a></li>
+        <li>
+          <a href="#current-work" class="mobile-nav-link">Current Work</a>
+        </li>
+        <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+      </ul>
+    </aside>
 
     <main class="main-content-container">
       <section class="hero-section">
@@ -414,7 +576,8 @@
         </div>
         <h1 class="hero-title">Hi, I'm Fabian</h1>
         <p class="hero-subtitle">
-          Laravel developer from <span class="highlight">Germany</span> crafting elegant web solutions
+          Laravel developer from <span class="highlight">Germany</span> crafting
+          elegant web solutions
         </p>
         <div class="social-links">
           <a
@@ -467,8 +630,8 @@
             <h3>dsc.pics</h3>
             <p>
               A free Discord-integrated image host and link shortener. Features
-              Discord-OAuth2 for authentication, a comprehensive Stats API, and a
-              Google Chrome Extension for seamless uploads and statistics.
+              Discord-OAuth2 for authentication, a comprehensive Stats API, and
+              a Google Chrome Extension for seamless uploads and statistics.
             </p>
             <div style="margin-top: 1rem">
               <a
@@ -525,8 +688,8 @@
           <article class="portfolio-item">
             <h3>getmy.name (WIP)</h3>
             <p>
-              A free Portfolio-API by MTEX.dev (founded by me). This project aims
-              to provide a flexible and easy-to-use API for managing and
+              A free Portfolio-API by MTEX.dev (founded by me). This project
+              aims to provide a flexible and easy-to-use API for managing and
               displaying personal portfolio data.
             </p>
           </article>
@@ -588,7 +751,8 @@
             <h3>linkmy.name / getsocials.link / mysocials.me</h3>
             <p>
               A unified platform for social profile management, short links, and
-              curated social media lists. Aims to simplify online presence management.
+              curated social media lists. Aims to simplify online presence
+              management.
             </p>
           </article>
 
@@ -628,13 +792,22 @@
       <p>&copy; 2025 Fabian Ternis. All rights reserved.</p>
     </footer>
 
-    <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top">
+    <button
+      id="scroll-to-top"
+      class="scroll-to-top"
+      aria-label="Scroll to top"
+    >
       <i class="bi bi-arrow-up"></i>
     </button>
 
     <script>
       const themeToggle = document.getElementById("theme-toggle");
       const scrollToTopBtn = document.getElementById("scroll-to-top");
+      const menuToggle = document.getElementById("menu-toggle");
+      const closeNav = document.getElementById("close-nav");
+      const mobileNav = document.getElementById("mobile-nav");
+      const navOverlay = document.getElementById("nav-overlay");
+      const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
       const htmlElement = document.documentElement;
       const themeKey = "fabianternis-theme";
 
@@ -643,8 +816,9 @@
       };
 
       const savedTheme = localStorage.getItem(themeKey);
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches;
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
       applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
 
       themeToggle.addEventListener("click", () => {
@@ -652,6 +826,26 @@
         const newTheme = isDark ? "light" : "dark";
         applyTheme(newTheme);
         localStorage.setItem(themeKey, newTheme);
+      });
+
+      const openMobileNav = () => {
+        mobileNav.classList.add("open");
+        navOverlay.classList.add("open");
+        document.body.style.overflow = "hidden";
+      };
+
+      const closeMobileNav = () => {
+        mobileNav.classList.remove("open");
+        navOverlay.classList.remove("open");
+        document.body.style.overflow = "";
+      };
+
+      menuToggle.addEventListener("click", openMobileNav);
+      closeNav.addEventListener("click", closeMobileNav);
+      navOverlay.addEventListener("click", closeMobileNav);
+
+      mobileNavLinks.forEach((link) => {
+        link.addEventListener("click", closeMobileNav);
       });
 
       window.addEventListener("scroll", () => {
@@ -670,7 +864,7 @@
         "Seeking new projects",
         "Open to full-time roles",
         "Consulting available",
-        "Happy to discuss ideas"
+        "Happy to discuss ideas",
       ];
 
       let shuffled = [...statusTexts].sort(() => Math.random() - 0.5);
