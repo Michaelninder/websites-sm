@@ -90,8 +90,25 @@ body {
   transition: color 0.3s ease;
 }
 
+.theme-toggle {
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
 .theme-toggle:hover {
-  filter: brightness(0.8);
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><circle cx='12' cy='12' r='4' fill='%23666' fill-opacity='0.1'/></svg>") 12 12,
+    pointer;
 }
 
 .theme-toggle .moon-icon {
