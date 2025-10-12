@@ -6,17 +6,17 @@
     <title>Fabian Ternis - Laravel Developer</title>
     <meta
       name="description"
-      content="Fabian Ternis is a Laravel Developer from Germany specializing in elegant web solutions."
+      content="Fabian Ternis is a Laravel Developer from Germany specializing in elegant web solutions and robust backend development."
     />
     <meta
       name="keywords"
-      content="Fabian Ternis, Laravel developer, PHP developer, Web Dev, Webentwickler, Germany, Web Development, Backend Development, Frontend Development, Fullstack, michaelninder"
+      content="Fabian Ternis, Laravel developer, PHP developer, Web Dev, Webentwickler, Germany, Web Development, Backend Development, Frontend Development, Fullstack, michaelninder, XPsystems, MTEX.dev, dsc.pics, switchJS"
     />
     <meta name="author" content="Fabian Ternis" />
     <meta property="og:title" content="Fabian Ternis - Laravel Developer" />
     <meta
       property="og:description"
-      content="Fabian Ternis is a Laravel Developer from Germany specializing in elegant web solutions."
+      content="Fabian Ternis is a Laravel Developer from Germany specializing in elegant web solutions and robust backend development."
     />
     <meta property="og:url" content="https://www.fabianternis.dev" />
     <meta property="og:type" content="website" />
@@ -341,6 +341,40 @@
         transform: translateY(-2px);
       }
 
+      .list-item {
+        margin-bottom: 1rem;
+        color: var(--color-text);
+        display: block;
+        font-size: 1rem;
+      }
+
+      .list-item strong {
+        display: block;
+        font-size: 1.125rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .list-item span {
+        font-size: 0.9375rem;
+        color: var(--color-text-secondary);
+        display: block;
+      }
+
+      .list-item a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        font-size: 0.9375rem;
+        color: var(--color-text);
+        text-decoration: none;
+        font-weight: 500;
+        margin-top: 0.5rem;
+      }
+
+      .list-item a:hover {
+        color: var(--color-accent);
+      }
+
       @media (max-width: 640px) {
         .portfolio-grid {
           grid-template-columns: 1fr;
@@ -407,35 +441,170 @@
       </section>
 
       <section class="portfolio-section" id="work">
-        <h2 class="section-title">Work</h2>
+        <h2 class="section-title">My Work</h2>
         <div class="portfolio-grid">
           <article class="portfolio-item">
-            <h3>XPsystems.eu</h3>
-            <p>Web solutions and hosting company</p>
-            <a href="https://www.xpsystems.eu" target="_blank" rel="noopener">
+            <h3>gimy.site</h3>
+            <p>
+              Static website host based on Laravel PHP. Leverages the Storage
+              Facade to manage all site data and media efficiently. Designed for
+              scalability, with AWS S3 compatibility. (by MTEX.dev)
+            </p>
+            <a href="https://gimy.site" target="_blank" rel="noopener">
               Visit site <i class="bi bi-arrow-up-right"></i>
             </a>
           </article>
+
           <article class="portfolio-item">
-            <h3>EuropeHost.eu</h3>
-            <p>Premium hosting services under XPsystems</p>
-            <a href="https://www.europehost.eu" target="_blank" rel="noopener">
+            <h3>dsc.pics</h3>
+            <p>
+              A free Discord-integrated image host and link shortener. Features
+              Discord-OAuth2 for authentication, a comprehensive Stats API, and a
+              Google Chrome Extension for seamless uploads and statistics.
+            </p>
+            <div style="margin-top: 1rem">
+              <a
+                href="https://chromewebstore.google.com/detail/dscpics-global-stats/hgfcfjggpadjoaedngakcghlimbibmjk"
+                target="_blank"
+                rel="noopener"
+                style="display: block; margin-bottom: 0.5rem"
+              >
+                Chrome Extension <i class="bi bi-box-arrow-up-right"></i>
+              </a>
+              <a
+                href="https://github.com/EuropeHost/dsc.pics"
+                target="_blank"
+                rel="noopener"
+                style="display: block; margin-bottom: 0.5rem"
+              >
+                GitHub (Main) <i class="bi bi-github"></i>
+              </a>
+              <a
+                href="https://github.com/EuropeHost/dsc.pics-stats-extension"
+                target="_blank"
+                rel="noopener"
+                style="display: block"
+              >
+                GitHub (Extension) <i class="bi bi-github"></i>
+              </a>
+            </div>
+          </article>
+
+          <article class="portfolio-item">
+            <h3>XP-Host.de</h3>
+            <p>
+              Developed and self-hosted a Minecraft server hosting platform for
+              friends and classmates. Built upon the Pterodactyl panel (Laravel
+              PHP-based) to provide robust server management.
+            </p>
+            <a href="https://xp-host.de" target="_blank" rel="noopener">
               Visit site <i class="bi bi-arrow-up-right"></i>
             </a>
           </article>
+
           <article class="portfolio-item">
             <h3>fternis.de</h3>
-            <p>Personal portfolio showcasing projects</p>
+            <p>
+              My personal portfolio, designed and developed to showcase my
+              projects and skills. This site utilizes TailwindCSS for styling
+              and Bootstrap Icons for a clean, modern aesthetic.
+            </p>
             <a href="https://www.fternis.de" target="_blank" rel="noopener">
               Visit site <i class="bi bi-arrow-up-right"></i>
             </a>
           </article>
+
           <article class="portfolio-item">
-            <h3>michaelninder.de</h3>
-            <p>Portfolio for diverse projects and collaborations</p>
-            <a href="https://www.michaelninder.de" target="_blank" rel="noopener">
+            <h3>getmy.name (WIP)</h3>
+            <p>
+              A free Portfolio-API by MTEX.dev (founded by me). This project aims
+              to provide a flexible and easy-to-use API for managing and
+              displaying personal portfolio data.
+            </p>
+          </article>
+
+          <article class="portfolio-item">
+            <h3>And many more...</h3>
+            <p>
+              These are just some highlights. I've worked on numerous other
+              projects, both personal and for clients, covering a wide range of
+              web development challenges.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="current-work-section" id="current-work">
+        <h2 class="section-title">What I'm Currently Working On</h2>
+        <div class="portfolio-grid">
+          <article class="portfolio-item">
+            <h3>switchJS</h3>
+            <p>
+              A unique project focused on converting code from languages like
+              Python into JavaScript directly within the browser, enabling
+              dynamic execution and learning.
+            </p>
+            <div style="margin-top: 1rem">
+              <a
+                href="https://switchjs.mtex.dev"
+                target="_blank"
+                rel="noopener"
+                style="display: block; margin-bottom: 0.5rem"
+              >
+                View Project <i class="bi bi-arrow-up-right"></i>
+              </a>
+              <a
+                href="https://switchjs.github.io"
+                target="_blank"
+                rel="noopener"
+                style="display: block"
+              >
+                GitHub Pages <i class="bi bi-box-arrow-up-right"></i>
+              </a>
+            </div>
+          </article>
+
+          <article class="portfolio-item">
+            <h3>yourlink.app (urlk.app)</h3>
+            <p>
+              A modern and efficient link shortening service. Focused on
+              providing clean, trackable, and reliable short links for various
+              applications.
+            </p>
+            <a href="https://yourlink.app" target="_blank" rel="noopener">
               Visit site <i class="bi bi-arrow-up-right"></i>
             </a>
+            <!-- Consider adding a mention of technologies like Laravel for backend if applicable -->
+          </article>
+
+          <article class="portfolio-item">
+            <h3>linkmy.name / getsocials.link / mysocials.me</h3>
+            <p>
+              A unified platform for social profile management, short links, and
+              curated social media lists. Aims to simplify online presence management.
+            </p>
+            <!-- Add a link if a primary URL is available -->
+            <!-- <a href="[URL]" target="_blank" rel="noopener">View Project <i class="bi bi-arrow-up-right"></i></a> -->
+          </article>
+
+          <article class="portfolio-item">
+            <h3>getmy.blog (by MTEX.dev)</h3>
+            <p>
+              A free Blog-API, similar in concept to getmy.name. This project is
+              designed to offer an accessible and robust API for managing and
+              serving blog content.
+            </p>
+            <!-- Add a link if a primary URL is available -->
+            <!-- <a href="[URL]" target="_blank" rel="noopener">View Project <i class="bi bi-arrow-up-right"></i></a> -->
+          </article>
+
+          <article class="portfolio-item">
+            <h3>And more...</h3>
+            <p>
+              I'm constantly experimenting and building new tools. This section
+              represents a glimpse into my ongoing explorations and development
+              efforts.
+            </p>
           </article>
         </div>
       </section>
