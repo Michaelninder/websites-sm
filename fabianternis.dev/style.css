@@ -152,8 +152,11 @@ a {
   transition: color 0.3s ease;
 }
 
-a:hover {
+a:hover,
+a:hover * {
   filter: brightness(0.8);
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'><circle cx='12' cy='12' r='6' fill='%23666' /></svg>") 16 16,
+    pointer;
 }
 
 .portfolio-grid {
