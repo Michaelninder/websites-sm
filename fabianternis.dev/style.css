@@ -37,6 +37,7 @@ body {
   transition: var(--transition);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: none;
 }
 
 ::-webkit-scrollbar {
@@ -94,6 +95,7 @@ body {
   color: var(--color-text);
   text-decoration: none;
   letter-spacing: -0.02em;
+  cursor: none;
 }
 
 .theme-toggle {
@@ -101,7 +103,7 @@ body {
   border: none;
   font-size: 1.25rem;
   color: var(--color-text);
-  cursor: pointer;
+  cursor: none;
   padding: 0.5rem;
   border-radius: 50%;
   width: 40px;
@@ -116,6 +118,7 @@ body {
 
 .theme-toggle:hover {
   background-color: var(--color-border);
+  cursor: none;
 }
 
 .theme-toggle i {
@@ -179,11 +182,13 @@ section {
   margin-bottom: calc(var(--spacing) * 2);
   background: var(--color-bg);
   transition: var(--transition);
+  cursor: none;
 }
 
 .status-badge:hover {
   border-color: var(--color-text);
   transform: translateY(-2px);
+  cursor: none;
 }
 
 .status-dot {
@@ -277,6 +282,7 @@ section {
   color: var(--color-text);
   transition: var(--transition);
   background: var(--color-bg);
+  cursor: none;
 }
 
 .social-links a:hover {
@@ -285,6 +291,7 @@ section {
   transform: translateY(-4px);
   border-color: var(--color-text);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: none;
 }
 
 .about-content p {
@@ -305,11 +312,13 @@ section {
   border-radius: var(--radius);
   transition: var(--transition);
   background: var(--color-bg);
+  cursor: none;
 }
 
 .portfolio-item:hover {
   border-color: var(--color-text);
   transform: translateY(-4px);
+  cursor: none;
 }
 
 .portfolio-item h3 {
@@ -337,11 +346,13 @@ section {
   font-size: 0.9375rem;
   font-weight: 500;
   transition: var(--transition);
+  cursor: none;
 }
 
 .portfolio-item a:hover {
   background-color: var(--color-text);
   color: var(--color-bg);
+  cursor: none;
 }
 
 .contact-text {
@@ -360,10 +371,12 @@ section {
   padding-bottom: 0.25rem;
   transition: var(--transition);
   letter-spacing: -0.01em;
+  cursor: none;
 }
 
 .contact-email:hover {
   opacity: 0.7;
+  cursor: none;
 }
 
 .footer-container {
@@ -388,7 +401,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: none;
   font-size: 1.25rem;
   opacity: 0;
   visibility: hidden;
@@ -405,9 +418,90 @@ section {
 .scroll-to-top:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  cursor: none;
+}
+
+a, button, .portfolio-item {
+  cursor: none;
+}
+
+.cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-light);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease;
+}
+
+.cursor-outline {
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--color-light);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cursor.active .cursor-outline {
+  transform: scale(2);
+}
+
+.cursor.active .cursor-dot {
+  transform: translate(-50%, -50%) scale(0.5);
+}
+
+.cursor.hidden {
+  opacity: 0;
 }
 
 @media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+
+  a, button, .portfolio-item {
+    cursor: pointer;
+  }
+
+  .cursor {
+    display: none;
+  }
+
+  .site-title,
+  .theme-toggle,
+  .theme-toggle:hover,
+  .status-badge,
+  .status-badge:hover,
+  .social-links a,
+  .social-links a:hover,
+  .portfolio-item,
+  .portfolio-item:hover,
+  .portfolio-item a,
+  .portfolio-item a:hover,
+  .contact-email,
+  .contact-email:hover,
+  .scroll-to-top,
+  .scroll-to-top:hover {
+    cursor: pointer;
+  }
+
   .portfolio-grid {
     grid-template-columns: 1fr;
   }
