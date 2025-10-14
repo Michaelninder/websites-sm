@@ -364,55 +364,66 @@
         border: 1px solid var(--color-border);
         border-radius: var(--radius);
         padding: 1.25rem;
-        overflow-x: auto;
       }
 
-      .calendar-wrapper {
-        min-width: 600px;
-      }
-
-      .calendar-months {
+      .calendar-header {
         display: flex;
-        gap: 8px;
-        margin-bottom: 8px;
-        padding-left: 28px;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
       }
 
-      .calendar-month {
-        font-size: 0.75rem;
+      .calendar-month-label {
+        font-size: 0.875rem;
+        color: var(--color-text);
+        font-weight: 600;
+      }
+
+      .calendar-grid-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .calendar-day-labels {
+        display: grid;
+        grid-template-columns: repeat(7, 14px);
+        gap: 3px;
+        padding-left: 0;
+        margin-bottom: 4px;
+      }
+
+      .calendar-day-label {
+        font-size: 0.625rem;
         color: var(--color-text-secondary);
+        text-align: center;
         font-weight: 500;
       }
 
-      .calendar-grid {
-        display: grid;
-        grid-template-rows: repeat(7, 12px);
-        grid-auto-flow: column;
-        gap: 3px;
-      }
-
-      .calendar-labels {
+      .calendar-weeks {
         display: flex;
         flex-direction: column;
         gap: 3px;
-        margin-right: 8px;
       }
 
-      .calendar-label {
-        height: 12px;
-        font-size: 0.625rem;
-        color: var(--color-text-secondary);
-        display: flex;
-        align-items: center;
+      .calendar-week {
+        display: grid;
+        grid-template-columns: repeat(7, 14px);
+        gap: 3px;
       }
 
       .calendar-day {
-        width: 12px;
-        height: 12px;
+        width: 14px;
+        height: 14px;
         border-radius: 2px;
         position: relative;
         cursor: pointer;
         transition: var(--transition);
+      }
+
+      .calendar-day.empty {
+        background: transparent;
+        cursor: default;
       }
 
       .calendar-day[data-level="0"] {
@@ -435,7 +446,7 @@
         background: var(--color-text);
       }
 
-      .calendar-day:hover {
+      .calendar-day:not(.empty):hover {
         outline: 2px solid var(--color-text);
         outline-offset: 1px;
       }
@@ -502,6 +513,8 @@
         display: flex;
         gap: 1.5rem;
         margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--color-border);
         font-size: 0.8125rem;
         color: var(--color-text-secondary);
       }
@@ -691,15 +704,16 @@
 
         .contribution-calendar {
           padding: 1rem;
-        }
-
-        .calendar-wrapper {
-          min-width: 500px;
+          overflow-x: auto;
         }
 
         .calendar-stats {
           flex-direction: column;
           gap: 0.5rem;
+        }
+
+        .calendar-grid-container {
+          min-width: max-content;
         }
       }
     </style>
@@ -1120,42 +1134,60 @@
 
           const events = await response.json();
 
-          const today = new Date();
-          const threeMonthsAgo = new Date();
-          threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
-
           const contributions = {};
           let totalContributions = 0;
-          let activeStreak = 0;
-          let currentStreak = 0;
 
           events.forEach((event) => {
             const date = new Date(event.created_at);
-            if (date >= threeMonthsAgo) {
-              const dateKey = date.toISOString().split("T")[0];
-              contributions[dateKey] = (contributions[dateKey] || 0) + 1;
-              totalContributions++;
-            }
+            const dateKey = date.toISOString().split("T")[0];
+            contributions[dateKey] = (contributions[dateKey] || 0) + 1;
+            totalContributions++;
           });
 
-          const days = [];
-          const currentDate = new Date(threeMonthsAgo);
-          currentDate.setDate(
-            currentDate.getDate() - currentDate.getDay()
-          );
+          const today = new Date();
+          today.setHours(23, 59, 59, 999);
+          const thirtyDaysAgo = new Date(today);
+          thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 29);
+          thirtyDaysAgo.setHours(0, 0, 0, 0);
 
+          const startDate = new Date(thirtyDaysAgo);
+          startDate.setDate(startDate.getDate() - startDate.getDay());
+
+          const weeks = [];
+          let currentWeek = [];
+
+          const currentDate = new Date(startDate);
           while (currentDate <= today) {
             const dateKey = currentDate.toISOString().split("T")[0];
             const count = contributions[dateKey] || 0;
-            days.push({
+            const isInRange =
+              currentDate >= thirtyDaysAgo && currentDate <= today;
+
+            currentWeek.push({
               date: new Date(currentDate),
               count: count,
-              level: getLevel(count),
+              level: isInRange ? getLevel(count) : null,
+              isInRange: isInRange,
             });
+
+            if (currentWeek.length === 7) {
+              weeks.push(currentWeek);
+              currentWeek = [];
+            }
+
             currentDate.setDate(currentDate.getDate() + 1);
           }
 
+          if (currentWeek.length > 0) {
+            while (currentWeek.length < 7) {
+              currentWeek.push({ empty: true });
+            }
+            weeks.push(currentWeek);
+          }
+
           const sortedDates = Object.keys(contributions).sort();
+          let currentStreak = 0;
+
           if (sortedDates.length > 0) {
             const lastDate = new Date(sortedDates[sortedDates.length - 1]);
             const daysDiff = Math.floor(
@@ -1177,64 +1209,74 @@
             }
           }
 
-          activeStreak = currentStreak;
+          const monthYear = today.toLocaleDateString("en-US", {
+            month: "long",
+            year: "numeric",
+          });
 
-          const months = getMonthsInRange(days);
-          const weeks = Math.ceil(days.length / 7);
+          const dayLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
           container.innerHTML = `
           <div class="contribution-calendar">
-            <div class="calendar-wrapper">
-              <div class="calendar-months">
-                ${months.map((m) => `<div class="calendar-month" style="flex: ${m.weeks}">${m.name}</div>`).join("")}
+            <div class="calendar-header">
+              <div class="calendar-month-label">${monthYear}</div>
+            </div>
+            <div class="calendar-grid-container">
+              <div class="calendar-day-labels">
+                ${dayLabels.map((day) => `<div class="calendar-day-label">${day}</div>`).join("")}
               </div>
-              <div style="display: flex;">
-                <div class="calendar-labels">
-                  <div class="calendar-label"></div>
-                  <div class="calendar-label">Mon</div>
-                  <div class="calendar-label"></div>
-                  <div class="calendar-label">Wed</div>
-                  <div class="calendar-label"></div>
-                  <div class="calendar-label">Fri</div>
-                  <div class="calendar-label"></div>
-                </div>
-                <div class="calendar-grid">
-                  ${days
-                    .map(
-                      (day) => `
-                    <div class="calendar-day" 
-                         data-level="${day.level}" 
-                         data-date="${day.date.toISOString().split("T")[0]}"
-                         data-count="${day.count}"></div>
-                  `
-                    )
-                    .join("")}
-                </div>
+              <div class="calendar-weeks">
+                ${weeks
+                  .map(
+                    (week) => `
+                  <div class="calendar-week">
+                    ${week
+                      .map((day) => {
+                        if (day.empty) {
+                          return '<div class="calendar-day empty"></div>';
+                        }
+                        if (!day.isInRange) {
+                          return '<div class="calendar-day empty"></div>';
+                        }
+                        return `
+                          <div class="calendar-day" 
+                               data-level="${day.level}" 
+                               data-date="${day.date.toISOString().split("T")[0]}"
+                               data-count="${day.count}"></div>
+                        `;
+                      })
+                      .join("")}
+                  </div>
+                `
+                  )
+                  .join("")}
               </div>
-              <div class="calendar-legend">
-                <span class="calendar-legend-label">Less</span>
-                <div class="calendar-legend-items">
-                  <div class="calendar-legend-item" data-level="0"></div>
-                  <div class="calendar-legend-item" data-level="1"></div>
-                  <div class="calendar-legend-item" data-level="2"></div>
-                  <div class="calendar-legend-item" data-level="3"></div>
-                  <div class="calendar-legend-item" data-level="4"></div>
-                </div>
-                <span class="calendar-legend-label">More</span>
+            </div>
+            <div class="calendar-legend">
+              <span class="calendar-legend-label">Less</span>
+              <div class="calendar-legend-items">
+                <div class="calendar-legend-item" data-level="0"></div>
+                <div class="calendar-legend-item" data-level="1"></div>
+                <div class="calendar-legend-item" data-level="2"></div>
+                <div class="calendar-legend-item" data-level="3"></div>
+                <div class="calendar-legend-item" data-level="4"></div>
               </div>
-              <div class="calendar-stats">
-                <div class="calendar-stat">
-                  <strong>${totalContributions}</strong> contributions in the last 3 months
-                </div>
-                <div class="calendar-stat">
-                  Current streak: <strong>${activeStreak} ${activeStreak === 1 ? "day" : "days"}</strong>
-                </div>
+              <span class="calendar-legend-label">More</span>
+            </div>
+            <div class="calendar-stats">
+              <div class="calendar-stat">
+                <strong>${totalContributions}</strong> contribution${totalContributions !== 1 ? "s" : ""} in the last 30 days
+              </div>
+              <div class="calendar-stat">
+                Current streak: <strong>${currentStreak} ${currentStreak === 1 ? "day" : "days"}</strong>
               </div>
             </div>
           </div>
         `;
 
-          const calendarDays = document.querySelectorAll(".calendar-day");
+          const calendarDays = document.querySelectorAll(
+            ".calendar-day:not(.empty)"
+          );
           calendarDays.forEach((day) => {
             day.addEventListener("mouseenter", (e) => {
               const date = new Date(day.dataset.date);
@@ -1271,37 +1313,6 @@
         if (count <= 4) return 2;
         if (count <= 6) return 3;
         return 4;
-      }
-
-      function getMonthsInRange(days) {
-        const months = [];
-        let currentMonth = null;
-        let weekCount = 0;
-
-        days.forEach((day, index) => {
-          const month = day.date.toLocaleDateString("en-US", {
-            month: "short",
-          });
-
-          if (index % 7 === 0) {
-            weekCount++;
-          }
-
-          if (month !== currentMonth) {
-            if (currentMonth !== null) {
-              months[months.length - 1].weeks = weekCount;
-              weekCount = 0;
-            }
-            currentMonth = month;
-            months.push({ name: month, weeks: 0 });
-          }
-        });
-
-        if (months.length > 0) {
-          months[months.length - 1].weeks = weekCount + 1;
-        }
-
-        return months;
       }
 
       fetchGitHubActivity();
