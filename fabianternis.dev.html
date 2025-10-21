@@ -673,6 +673,33 @@
       .status-text {
         transition: opacity 0.3s ease;
       }
+      
+      #toast-container {
+        position: fixed;
+        top: 2rem;
+        right: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        z-index: 1000;
+      }
+
+      .toast {
+        background: var(--color-text);
+        color: var(--color-bg);
+        padding: 0.75rem 1rem;
+        border-radius: var(--radius);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        font-size: 0.875rem;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
       @media (max-width: 768px) {
         .nav-links {
@@ -727,7 +754,7 @@
 
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
-          <li><a href="#activity">Activity</a></li>
+          <!--li><a href="#activity">Activity</a></li-->
           <li><a href="#work">Work</a></li>
           <li><a href="#current-work">Current</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -766,7 +793,7 @@
       </div>
       <ul class="mobile-nav-links">
         <li><a href="#about" class="mobile-nav-link">About</a></li>
-        <li><a href="#activity" class="mobile-nav-link">Activity</a></li>
+        <!--li><a href="#activity" class="mobile-nav-link">Activity</a></li-->
         <li><a href="#work" class="mobile-nav-link">Work</a></li>
         <li>
           <a href="#current-work" class="mobile-nav-link">Current Work</a>
@@ -818,7 +845,7 @@
         </div>
       </section>
 
-      <section class="activity-section" id="activity">
+      <!--section class="activity-section" id="activity">
         <div class="activity-header">
           <h2 class="section-title" style="margin-bottom: 0">
             Recent Activity
@@ -835,7 +862,7 @@
         <div id="activity-container">
           <div class="activity-loading">Loading contribution calendar...</div>
         </div>
-      </section>
+      </section-->
 
       <section class="portfolio-section" id="work">
         <h2 class="section-title">My Work</h2>
@@ -1028,6 +1055,8 @@
 
     <div class="calendar-tooltip" id="tooltip"></div>
 
+    <div id="toast-container"></div>
+
     <script>
       const themeToggle = document.getElementById("theme-toggle");
       const scrollToTopBtn = document.getElementById("scroll-to-top");
@@ -1035,9 +1064,25 @@
       const closeNav = document.getElementById("close-nav");
       const mobileNav = document.getElementById("mobile-nav");
       const navOverlay = document.getElementById("nav-overlay");
+      const toastContainer = document.getElementById("toast-container");
       const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
       const htmlElement = document.documentElement;
       const themeKey = "fabianternis-theme";
+
+      function showToast(message) {
+        if (window.innerWidth <= 768) return;
+        const toast = document.createElement("div");
+        toast.className = "toast";
+        toast.textContent = message;
+        toastContainer.appendChild(toast);
+
+        requestAnimationFrame(() => toast.classList.add("show"));
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+          setTimeout(() => toast.remove(), 300);
+        }, 2000);
+      }
 
       const applyTheme = (theme) => {
         htmlElement.classList.toggle("dark", theme === "dark");
@@ -1054,6 +1099,8 @@
         const newTheme = isDark ? "light" : "dark";
         applyTheme(newTheme);
         localStorage.setItem(themeKey, newTheme);
+
+        showToast(newTheme === "dark" ? "Dark mode enabled" : "Light mode enabled");
       });
 
       const openMobileNav = () => {
