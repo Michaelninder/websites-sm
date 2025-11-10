@@ -92,7 +92,10 @@
                     With my skills in <span class="font-semibold text-blue-600">Java, Python, HTML, CSS, JavaScript, PHP, and Laravel</span>, I am able to build sleek websites and webapps or complex tools like compilers and game engines.
                 </p>
                 <p class="text-lg leading-relaxed mb-4">
-                    I love being able to create awesome stuff with my programming skills, like this website! I play a lot of games and am always open to collaboration. 
+                    I love being able to create awesome stuff with my programming skills! I play a lot of games and am always open to collaboration. 
+                </p>
+                <p class="text-lg leading-relaxed mb-4">
+                    You can reach me via email at <a href="mailto:r.brewer@xpsystems.eu" class="underline font-semibold text-blue-600 hover:text-blue-700">r.brewer@xpsystems.eu</a>.
                 </p>
                 <p class="text-lg leading-relaxed">
                     Join the <a href="https://discord.gg/zbhvruNCnG" target="_blank" class="underline font-semibold text-blue-600 hover:text-blue-700">Discord server here</a>! Thanks for stopping by, and I hope you keep exploring this page!
@@ -267,8 +270,20 @@
 
         async function loadGitHubRepos() {
             try {
-                const response = await fetch('https://api.github.com/users/DogWaterDev/repos?sort=updated&per_page=9');
-                const repos = await response.json();
+                let allRepos = [];
+                let page = 1;
+                const perPage = 100;
+
+                while (true) {
+                    const response = await fetch(`https://api.github.com/users/DogWaterDev/repos?sort=updated&per_page=${perPage}&page=${page}`);
+                    const repos = await response.json();
+
+                    if (repos.length === 0) {
+                        break;
+                    }
+                    allRepos = allRepos.concat(repos);
+                    page++;
+                }
                 
                 const repoContainer = document.getElementById('repoContainer');
                 const repoLoading = document.getElementById('repoLoading');
@@ -276,7 +291,7 @@
                 repoLoading.classList.add('hidden');
                 repoContainer.classList.remove('hidden');
                 
-                repos.forEach(repo => {
+                allRepos.forEach(repo => {
                     const repoCard = document.createElement('div');
                     repoCard.className = 'repo-card rounded-xl p-6 border transition-theme';
                     repoCard.style.backgroundColor = isDark ? '#1f2937' : '#ffffff';
